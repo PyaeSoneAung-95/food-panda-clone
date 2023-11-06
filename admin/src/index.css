@@ -1,0 +1,36 @@
+@tailwind base;
+@tailwind utilities;
+@tailwind components;
+
+@layer base {
+  body {
+    @apply bg-white md:bg-gray-100;
+  }
+  button {
+    @apply font-semibold disabled:cursor-not-allowed;
+  }
+}
+
+@layer components {
+  .title {
+    @apply text-2xl mb-6 font-medium;
+  }
+  .input-group {
+    @apply last-of-type:mb-0 mb-4;
+  }
+  .input-control {
+    @apply h-[48px] border rounded-md px-3 text-gray-700 block w-full;
+  }
+  .input-label {
+    @apply block text-lg  mb-1;
+  }
+  .input-error {
+    @apply border-red-500 focus:outline-red-500;
+  }
+  .input-label__error {
+    @apply text-red-500 mt-1 block text-sm pl-1;
+  }
+  .btn-primary {
+    @apply bg-blue-400 text-white enabled:hover:bg-blue-500;
+  }
+}
