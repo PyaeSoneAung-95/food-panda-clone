@@ -4,6 +4,8 @@ import Signup from "./pages/Signup";
 import Protected from "./pages/Protected";
 import Dashboard from "./pages/Dashboard";
 import AuthProvider from "./providers/AuthProvider";
+import Restaurant from "./pages/Restaurant";
+import Order from "./pages/Order";
 
 function App() {
   return (
@@ -14,6 +16,8 @@ function App() {
           <Route path="/signup" element={<Signup />} />
           <Route path="/" element={<Protected />}>
             <Route index element={<Dashboard />} />
+            <Route path="/restaurant" element={<Restaurant />} />
+            <Route path="/order" element={<Order />} />
           </Route>
         </Routes>
       </AuthProvider>

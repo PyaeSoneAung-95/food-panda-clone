@@ -12,7 +12,9 @@ export default function Protected() {
     <>
       <Navbar />
       <Sidebar />
-      <Outlet />
+      <div className="mt-[65px] ml-[200px]">
+        <Outlet />
+      </div>
     </>
   );
 }

@@ -7,7 +7,8 @@ type Employee = {
 
 type AuthContext = {
   user: Employee | null;
-  updateUser: (data: Employee | null) => void;
+  addUser: (data: Employee) => void;
+  removeUser: () => void;
 };
 
 type InputProps = {

@@ -9,10 +9,10 @@ export default function Sidebar() {
         <li className={pathname === "/" ? "active" : ""}>
           <Link to="/">Dashboard</Link>
         </li>
-        <li className={pathname === "/" ? "active" : ""}>
+        <li className={pathname === "/restaurant" ? "active" : ""}>
           <Link to="/restaurant">Restaurant</Link>
         </li>
-        <li className={pathname === "/" ? "active" : ""}>
+        <li className={pathname === "/order" ? "active" : ""}>
           <Link to="/order">Order</Link>
         </li>
       </ul>

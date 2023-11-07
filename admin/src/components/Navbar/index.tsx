@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
 
 export default function Navbar() {
-  const { user, updateUser } = useAuth();
+  const { user, removeUser } = useAuth();
 
   return (
     <div className="fixed top-0 left-0  right-0 z-40 bg-white  shadow-sm px-4">
@@ -13,7 +13,7 @@ export default function Navbar() {
         <div className="flex items-center">
           <p>{user?.name}</p>
           <button
-            onClick={() => updateUser(null)}
+            onClick={removeUser}
             className="text-red-400 font-semibold ml-2 border rounded-md p-2 border-red-400"
           >
             Log out

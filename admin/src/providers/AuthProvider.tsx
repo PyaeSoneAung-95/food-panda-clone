@@ -1,16 +1,22 @@
 import { createContext } from "react";
 import { useLocalStorage } from "../hooks/useLocalStorage";
 
-export const AuthContext = createContext<AuthContext | null>(null);
+export const AuthContext = createContext<AuthContext>({
+  user: null,
+  addUser: () => {},
+  removeUser: () => {},
+});
 
 export default function AuthProvider({ children }: { children: React.ReactNode }) {
-  const { value: user, addValue, removeValue } = useLocalStorage<Employee>("user");
-
-  const updateUser = (data: Employee | null) => {
-    data ? addValue(data) : removeValue();
-  };
+  const {
+    value: user,
+    addValue: addUser,
+    removeValue: removeUser,
+  } = useLocalStorage<Employee>("user");
 
   return (
-    <AuthContext.Provider value={{ user, updateUser }}>{children}</AuthContext.Provider>
+    <AuthContext.Provider value={{ user, addUser, removeUser }}>
+      {children}
+    </AuthContext.Provider>
   );
 }
