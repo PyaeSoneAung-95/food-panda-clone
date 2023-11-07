@@ -1,17 +1,16 @@
-import mongoose from "mongoose";
+import { Schema, model } from "mongoose";
 
-const employeeSchema = new mongoose.Schema(
+const employeeSchema = new Schema(
   {
     name: String,
     email: String,
     password: String,
-    image: String,
   },
   {
     timestamps: true,
   }
 );
 
-const Employee = mongoose.model("employee", employeeSchema);
+const Employee = model("employee", employeeSchema);
 
 export default Employee;

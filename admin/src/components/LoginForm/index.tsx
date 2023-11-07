@@ -18,7 +18,7 @@ const initialValues = {
 };
 
 export default function LoginForm() {
-  const { updateUser } = useAuth();
+  const { addUser } = useAuth();
   const navigate = useNavigate();
 
   const handleSubmit = (
@@ -27,8 +27,8 @@ export default function LoginForm() {
   ) => {
     login(values).then((result) => {
       setSubmitting(false);
-      if (result.success) {
-        updateUser(result.data);
+      if (result.success && result.data) {
+        addUser(result.data);
         navigate("/");
       } else {
         alert(result.message);

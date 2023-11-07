@@ -3,6 +3,7 @@ import cors from "cors";
 import dotEnv from "dotenv";
 import mongoose from "mongoose";
 import employeeRoute from "./routes/employeeRoute.js";
+import restaurantRoute from "./routes/restaurantRoute.js";
 
 const app = express();
 
@@ -28,3 +29,4 @@ mongoose
 
 //api routes
 app.use("/api/employee", employeeRoute);
+app.use("/api/restaurant", restaurantRoute);

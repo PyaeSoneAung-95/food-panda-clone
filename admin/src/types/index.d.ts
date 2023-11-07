@@ -5,10 +5,31 @@ type Employee = {
   image: string;
 };
 
+type Restaurant = {
+  _id: string;
+  name: string;
+  image: string;
+  category: string;
+  location: string;
+  author_id: string;
+};
+
+type RestaurantForm = {
+  name: string;
+  image: string | File;
+  category: string;
+  location: string;
+};
+
 type AuthContext = {
   user: Employee | null;
   addUser: (data: Employee) => void;
   removeUser: () => void;
+};
+
+type RestaurantContext = {
+  toggleRefetch: () => void;
+  restaurants: Restaurant[];
 };
 
 type InputProps = {
@@ -43,5 +64,5 @@ type AspectRatioProps = {
 type ApiResponse<T> = {
   success: boolean;
   message: string;
-  data: T;
+  data: T | null;
 };

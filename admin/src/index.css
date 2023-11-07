@@ -13,7 +13,7 @@
 
 @layer components {
   .title {
-    @apply text-2xl mb-6 font-medium;
+    @apply text-2xl font-medium;
   }
   .input-group {
     @apply last-of-type:mb-0 mb-4;
@@ -31,8 +31,16 @@
     @apply text-red-500 mt-1 block text-sm pl-1;
   }
   .btn-primary {
-    @apply bg-blue-400 text-white enabled:hover:bg-blue-500;
+    @apply bg-blue-400 text-white enabled:hover:bg-blue-500 rounded-md;
   }
+  .btn-primary-outline {
+    @apply border border-blue-400 bg-blue-50 text-blue-400 rounded-md;
+  }
+
+  .btn-error-outline {
+    @apply border border-red-400 bg-red-50 text-red-400 rounded-md;
+  }
+
   .sidebar a {
     @apply px-4 py-3 block text-lg hover:bg-gray-100;
   }
@@ -41,5 +49,21 @@
   }
   .sidebar li.active {
     @apply text-black bg-blue-100;
+  }
+  .table {
+    @apply w-full;
+  }
+  .table thead tr {
+    @apply bg-gray-200;
+  }
+  .table tbody tr {
+    @apply even:bg-gray-100;
+  }
+  .table th {
+    @apply text-left h-[45px] first:w-[400px];
+  }
+  .table th,
+  .table td {
+    @apply border border-gray-300 px-4 py-3;
   }
 }
