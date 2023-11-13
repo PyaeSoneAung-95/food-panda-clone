@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import DeleteRestaurant from "../DeleteRestaurant";
 import EditRestaurant from "../EditRestaurant";
 
@@ -15,7 +16,12 @@ export default function RestaurantTable({ data }: { data: Restaurant[] }) {
       <tbody>
         {data.map((item) => (
           <tr key={item._id}>
-            <td>{item.name}</td>
+            <td>
+              <p>{item.name}</p>
+              <Link to={`/restaurant/${item._id}`} className="block mt-3 text-blue-500">
+                View Menus
+              </Link>
+            </td>
             <td>{item.location}</td>
             <td>{item.category}</td>
             <td>

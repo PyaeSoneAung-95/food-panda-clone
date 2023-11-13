@@ -9,7 +9,7 @@ export default function Sidebar() {
         <li className={pathname === "/" ? "active" : ""}>
           <Link to="/">Dashboard</Link>
         </li>
-        <li className={pathname === "/restaurant" ? "active" : ""}>
+        <li className={pathname.startsWith("/restaurant") ? "active" : ""}>
           <Link to="/restaurant">Restaurant</Link>
         </li>
         <li className={pathname === "/order" ? "active" : ""}>

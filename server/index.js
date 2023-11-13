@@ -17,10 +17,7 @@ const db_url = process.env.DB_URL;
 
 // mongoose db connection
 mongoose
-  .connect(db_url, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
+  .connect(db_url)
   .then(() => {
     console.log("DB connected...");
     app.listen(8000, () => console.log("Server is running on port 8000..."));

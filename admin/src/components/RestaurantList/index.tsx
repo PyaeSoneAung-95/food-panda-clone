@@ -5,7 +5,7 @@ const RestaurantList = () => {
   const { restaurants } = useRestaurant();
 
   return (
-    <div className="p-6">
+    <div className="px-6 pt-4 pb-6">
       {restaurants.length > 0 ? (
         <div>
           <RestaurantTable data={restaurants} />

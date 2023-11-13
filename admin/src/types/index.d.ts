@@ -13,6 +13,17 @@ type Restaurant = {
   location: string;
   author_id: string;
 };
+type Menu = {
+  _id: string;
+  name: string;
+  price: string;
+  image: string;
+  category: string;
+};
+
+type RestaurantDetail = {
+  menus: Menu[];
+} & Restaurant;
 
 type RestaurantForm = {
   name: string;
@@ -30,6 +41,12 @@ type AuthContext = {
 type RestaurantContext = {
   toggleRefetch: () => void;
   restaurants: Restaurant[];
+};
+
+type MenuContext = {
+  toggleRefetch: () => void;
+  restaurantDetail: Restaurant | null;
+  menus: Menu[];
 };
 
 type InputProps = {

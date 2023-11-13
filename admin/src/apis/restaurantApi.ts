@@ -19,3 +19,10 @@ export const updateRestaurant = async (data: FormData) => {
   const result: ApiResponse<null> = await axiosInstance.put("/restaurant/", data);
   return result;
 };
+
+export const getRestaurant = async (id: string) => {
+  const result: ApiResponse<RestaurantDetail> = await axiosInstance.get(
+    `/restaurant/${id}`
+  );
+  return result;
+};

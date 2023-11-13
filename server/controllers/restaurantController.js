@@ -84,3 +84,106 @@ export const update = async (req, res) => {
     }
   }
 };
+
+export const addMenu = async (req, res) => {
+  let reqData = JSON.parse(req.body.data);
+  const { name } = reqData;
+  const id = req.params.id;
+  const file = req.file;
+  const isExist = await Restaurant.findOne({ _id: id, "menus.name": name });
+  if (isExist) {
+    fs.remove(file.path);
+    return res.status(409).json({
+      success: false,
+      message: "Menu already exist in this restaurant!",
+      data: null,
+    });
+  } else {
+    const result = await cloudinaryUpload.upload(file.path, {
+      folder: "delivery/menu/",
+    });
+    fs.remove(req.file.path);
+    reqData.image = result.secure_url;
+    const updateResult = await Restaurant.findOneAndUpdate(
+      { _id: id },
+      {
+        $addToSet: { menus: reqData },
+      },
+      { new: true, upsert: false }
+    );
+    if (updateResult) {
+      return res
+        .status(200)
+        .json({ success: true, message: "Add menu successful", data: null });
+    }
+  }
+};
+
+export const deleteMenu = async (req, res) => {
+  const { id, menuId } = req.params;
+  const deleteResult = await Restaurant.findOneAndUpdate(
+    { _id: id },
+    {
+      $pull: { menus: { _id: menuId } },
+    }
+  );
+  if (deleteResult) {
+    return res
+      .status(200)
+      .json({ success: true, message: "Delete menu successful", data: null });
+  }
+};
+
+export const updateMenu = async (req, res) => {
+  const { id, menuId } = req.params;
+  let reqData = JSON.parse(req.body.data);
+  const file = req.file;
+  const findResult = await Restaurant.findOne({
+    _id: id,
+    menus: {
+      $elemMatch: {
+        _id: { $ne: menuId },
+        name: reqData.name,
+      },
+    },
+  });
+  if (findResult) {
+    return res
+      .status(409)
+      .json({ success: false, message: "The menu name already exists!", data: null });
+  } else {
+    if (file) {
+      const result = await cloudinaryUpload.upload(file.path, {
+        folder: "delivery/menu/",
+      });
+      fs.remove(file.path);
+      reqData.image = result.secure_url;
+    }
+    const updatedMenu = await Restaurant.findOneAndUpdate(
+      { _id: id, "menus._id": menuId },
+      {
+        $set: {
+          "menus.$": reqData,
+        },
+      }
+    );
+    if (updatedMenu) {
+      return res
+        .status(200)
+        .json({ success: true, message: "Update menu successful", data: null });
+    }
+  }
+};
+
+export const getRestaurant = async (req, res) => {
+  let id = req.params.id;
+  const findResult = await Restaurant.findById(id);
+  if (!findResult) {
+    return res
+      .status(404)
+      .json({ success: false, message: "No restaurant found", data: null });
+  }
+  return res
+    .status(200)
+    .json({ success: true, message: "Get restaurant successful", data: findResult });
+};
